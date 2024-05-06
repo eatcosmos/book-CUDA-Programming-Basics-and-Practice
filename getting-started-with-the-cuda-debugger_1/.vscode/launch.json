@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "CUDA C++: Launch",
+          "type": "cuda-gdb", // 这个是选择调试器，nvcc是编译器
+          "debuggerPath":"/usr/local/cuda/bin/cuda-gdb", // debuggerPath：cuda-gdb 的路径。如果未指定，将在路径中搜索 cuda-gdb。这个属性用于指定特定于语言或工具链的调试器的路径。
+          "initCommands":[], // initCommands 是一个字符串数组，包含在调试会话开始之前发送给调试器的一系列命令。
+          "args": "", // args：传递给调试可执行文件对象的命令行参数。
+          "request": "launch", // 
+          "cwd": "${workspaceFolder}", // 调试器会将工作目录设置为工作区的根目录
+          "program": "${workspaceFolder}/bin/x86_64/linux/debug/matrixMul", // program 表示把哪个可执行文件加载调试器
+          "breakOnLaunch": true, // 当设置为 true 时，程序会在启动后立即中断
+          "stopAtEntry": true, // 这个属性与 breakOnLaunch 等效，这是另一种方式来告诉调试器在启动时暂停程序执行。
+          "onAPIError":"stop", // onAPIError：指示发生驱动程序 API 或运行时 API 错误时要执行的操作。有效值为 hide 、 ignore 和 stop 。
+      }
+  ]
+}

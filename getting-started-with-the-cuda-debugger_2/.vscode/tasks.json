@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}/Samples/0_Introduction/matrixMul"
+  },
+  "tasks": [
+      {
+          "label": "echo", // 定义了任务的显示名称，这个名称会在 VSCode 的构建任务菜单中显示。
+          "type": "shell", // 指定任务类型为 "shell"，意味着这个任务将在 shell 中执行命令。
+          // apt-get install gcc-10 -y && apt-get install g++-10 -y
+          "command": "update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 20 && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 20 && make clean && make dbg=1", // 为了生成带有符号信息的未优化代码，需要 dbg 变量。
+          "problemMatcher": ["$nvcc"], // 指定问题匹配器，这里是 $nvcc。这意味着 VSCode 将使用 nvcc 问题匹配器来捕获并显示由 nvcc（CUDA 编译器）生成的编译错误和警告。
+          "group": { // 开始定义任务组的属性。
+              "kind": "build", // 指定任务组的类型为 "build"，表示这是一个构建任务。
+              "isDefault": true // 指定这个任务是默认任务，当执行 "Run Build Task" 命令时，如果没有其他任务被选中，VSCode 将执行这个任务。
+          }
+      }
+  ]
+}
+// 要构建任务，请再次转到命令面板并运行 Tasks: Run Build Task 任务。查看问题和终端面板中的错误消息。
+// 要开始调试，请转到 Run and Debug 选项卡并单击 Start Debugging 按钮，或者只需按 F5 。我们是配置的启动文件launch.json，再配置的构建任务tasks.json
